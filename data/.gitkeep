@@ -1,0 +1,2 @@
+# Este archivo sirve para que Git mantenga la carpeta data/ aunque esté vacía.
+# Los archivos CSV deben descargarse desde GitHub Releases o Google Drive según el README.

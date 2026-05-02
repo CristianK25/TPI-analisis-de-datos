@@ -24,11 +24,16 @@ El proyecto está organizado siguiendo estándares de ingeniería de datos para 
 
 ## 📊 Datos (Datasets)
 
-Debido al volumen de los datos, los archivos CSV se gestionan a través de **GitHub Releases**. Puede descargar las versiones necesarias desde la sección de [Releases](https://github.com/CristianK25/TPI-analisis-de-datos/releases) de este repositorio:
+Debido al volumen de los datos, los archivos CSV se gestionan a través de **GitHub Releases** y **Google Drive**. Puede descargar las versiones necesarias desde:
+
+- 📦 **[GitHub Releases](https://github.com/CristianK25/TPI-analisis-de-datos/releases)**
+- ☁️ **[Google Drive](https://drive.google.com/drive/folders/1FkKycqS1PaqQvUDf2MsaTiYRerndTYQ7?usp=sharing)**
+
+Los archivos disponibles son:
 
 1.  **`dataset_ORIGINAL.csv`**: Datos fuente sin procesar.
-2.  **`dataset_DIRTY.csv`**: Dataset con ruido inducido (nulos, outliers y duplicados) para validar el proceso de limpieza (NECESARIO).
-3.  **`dataset_CLEAN.csv`**: Dataset purgado y listo para el análisis estadístico.
+2.  **`dataset_DIRTY.csv`**: Dataset con ruido inducido (nulos, outliers y duplicados) para validar el proceso de limpieza (**Requerido para el Hito 2**).
+3.  **`dataset_CLEAN.csv`**: Dataset purgado y enriquecido con nuevas variables, listo para el análisis estadístico.
 
 ---
 
