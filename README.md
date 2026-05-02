@@ -27,7 +27,7 @@ El proyecto está organizado siguiendo estándares de ingeniería de datos para 
 Debido al volumen de los datos, los archivos CSV se gestionan a través de **GitHub Releases**. Puede descargar las versiones necesarias desde la sección de [Releases](https://github.com/CristianK25/TPI-analisis-de-datos/releases) de este repositorio:
 
 1.  **`dataset_ORIGINAL.csv`**: Datos fuente sin procesar.
-2.  **`dataset_DIRTY.csv`**: Dataset con ruido inducido (nulos, outliers y duplicados) para validar el proceso de limpieza.
+2.  **`dataset_DIRTY.csv`**: Dataset con ruido inducido (nulos, outliers y duplicados) para validar el proceso de limpieza (NECESARIO).
 3.  **`dataset_CLEAN.csv`**: Dataset purgado y listo para el análisis estadístico.
 
 ---
