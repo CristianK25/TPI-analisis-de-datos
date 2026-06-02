@@ -76,8 +76,9 @@ No hace nada por sí solo. Su único trabajo es:
 1. Configurar la página (título, ícono, layout ancho)
 2. Llamar a `cargar_datos()` para obtener el DataFrame
 3. Llamar a `aplicar_filtros()` para filtrar según lo que eligió el usuario
-4. Llamar a `mostrar_kpis()` para dibujar las métricas
-5. Llamar a cada función de `graph.py` y mostrar el gráfico resultante
+4. Mostrar una alerta automática si el porcentaje de alumnos en riesgo supera el 10% (amarilla) o el 20% (roja)
+5. Llamar a `mostrar_kpis()` para dibujar las métricas
+6. Llamar a cada función de `graph.py` y mostrar el gráfico resultante
 
 ```python
 # Así se ve app.py por dentro (simplificado)
@@ -112,7 +113,7 @@ Dibuja los controles interactivos del panel izquierdo y aplica los filtros sobre
 | Filtro | Tipo de control | Columna del dataset |
 |---|---|---|
 | Comisión / Semestre | Lista múltiple | `Semester_ID` (1 al 8) |
-| Estado de alerta | Botón de opción | `Alerta_Riesgo` (True/False) |
+| Estado de alerta | Botón de opción | `Alerta_Riesgo` (En riesgo / Sin riesgo / Todos) |
 | Género | Lista múltiple | `Gender` |
 | Carrera | Lista múltiple | `Major_Subject` |
 | Rango de edad | Slider | `Age` |
@@ -151,7 +152,7 @@ Cada función recibe el DataFrame ya filtrado y devuelve una figura de Plotly. `
 **Scatter plot** de horas de estudio semanales vs. nota final. Los puntos en riesgo son rojos, los sanos son verdes. Incluye una **línea de tendencia OLS** (regresión lineal) para ver la correlación. Usa una muestra de 3.000 alumnos para no saturar el gráfico.
 
 #### 4. `grafico_evolucion_semestre(df)`
-**Gráfico de líneas** con tres métricas promediadas por semestre: Nota Final, Nota del Parcial y GPA×10 (multiplicado para que sea comparable en escala). Útil para ver si el rendimiento mejora o empeora con los semestres.
+**Gráfico de líneas** con tres métricas promediadas por semestre: Nota Final, Nota del Parcial (eje izquierdo, escala 0–100) y GPA promedio (eje derecho, escala 0–4). Útil para ver si el rendimiento mejora o empeora con los semestres.
 
 #### 5. `grafico_estres_sueno(df)`
 **Heatmap de densidad**: cuántos estudiantes hay en cada combinación de horas de sueño + nivel de estrés. Las zonas más oscuras (amarillo en escala Viridis) tienen más concentración de estudiantes.

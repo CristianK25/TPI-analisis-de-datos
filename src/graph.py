@@ -26,24 +26,35 @@ def grafico_riesgo_por_carrera(df):
     return fig
 
 def grafico_estudio_vs_nota(df):
-    sample = df.sample(min(3000, len(df)), random_state=42)
+    sample = df.sample(min(3000, len(df)), random_state=42).copy()
+    sample["Estado"] = sample["Alerta_Riesgo"].map({True: "En riesgo", False: "Sin riesgo"})
     fig = px.scatter(sample, x="Weekly_Study_Hours", y="Final_Exam_Score",
-        color="Alerta_Riesgo",
-        color_discrete_map={True: "#EF553B", False: "#00CC96"},
+        color="Estado",
+        color_discrete_map={"En riesgo": "#EF553B", "Sin riesgo": "#00CC96"},
+        category_orders={"Estado": ["Sin riesgo", "En riesgo"]},
         opacity=0.5, trendline="ols",
         labels={"Weekly_Study_Hours": "Horas semanales de estudio",
-                "Final_Exam_Score": "Nota Final", "Alerta_Riesgo": "En riesgo"})
-    fig.update_layout(legend_title_text="En riesgo", margin=dict(t=20, b=20))
+                "Final_Exam_Score": "Nota Final", "Estado": "Estado del alumno"})
+    fig.update_layout(legend_title_text="Estado del alumno", margin=dict(t=20, b=20))
     return fig
 
 def grafico_evolucion_semestre(df):
     ev = (df.groupby("Semester_ID")[["Final_Exam_Score","Midterm_Mark","Previous_GPA"]]
           .mean().reset_index())
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Final_Exam_Score"], mode="lines+markers", name="Nota Final"))
-    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Midterm_Mark"], mode="lines+markers", name="Parcial"))
-    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Previous_GPA"]*10, mode="lines+markers", name="GPA ×10", line=dict(dash="dot")))
-    fig.update_layout(xaxis_title="Semestre", yaxis_title="Promedio", legend_title_text="Métrica", margin=dict(t=20, b=20))
+    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Final_Exam_Score"],
+        mode="lines+markers", name="Nota Final", yaxis="y1"))
+    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Midterm_Mark"],
+        mode="lines+markers", name="Parcial", yaxis="y1"))
+    fig.add_trace(go.Scatter(x=ev["Semester_ID"], y=ev["Previous_GPA"],
+        mode="lines+markers", name="GPA promedio", line=dict(dash="dot"), yaxis="y2"))
+    fig.update_layout(
+        xaxis_title="Semestre",
+        yaxis=dict(title="Nota (0–100)", side="left"),
+        yaxis2=dict(title="GPA (0–4)", side="right", overlaying="y", showgrid=False),
+        legend_title_text="Métrica",
+        margin=dict(t=20, b=20),
+    )
     return fig
 
 def grafico_estres_sueno(df):
