@@ -41,6 +41,8 @@ pandas==3.0.2
 parso==0.8.6
 pexpect==4.9.0
 pillow==12.2.0
+plotly>=5.20.0
+statsmodels>=0.14.0
 platformdirs==4.9.6
 prompt_toolkit==3.0.52
 protobuf==7.34.1
