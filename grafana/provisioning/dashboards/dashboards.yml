@@ -1,0 +1,14 @@
+# Provider que carga los dashboards desde /var/lib/grafana/dashboards.
+apiVersion: 1
+
+providers:
+  - name: TPI Dashboards
+    orgId: 1
+    folder: "TPI - Análisis de Datos"
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

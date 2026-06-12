@@ -1,0 +1,19 @@
+# Datasource de PostgreSQL provisionado automáticamente al arrancar Grafana.
+apiVersion: 1
+
+datasources:
+  - name: TPI PostgreSQL
+    uid: tpi_postgres
+    type: postgres
+    access: proxy
+    url: db:5432
+    user: tpi
+    isDefault: true
+    jsonData:
+      database: tpi
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false
+    secureJsonData:
+      password: tpi
+    editable: true
