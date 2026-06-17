@@ -103,22 +103,32 @@ def crear_caracteristicas(df):
     return df_feat
 
 def ejecutar_etl():
-    """Flujo completo: Extracción -> Limpieza -> Feature Engineering -> Carga."""
+    """Flujo completo: Extracción -> Limpieza -> Feature Engineering -> Carga.
+
+    Envuelve la lectura/escritura en try-except para que un fallo de I/O o un
+    CSV corrupto devuelva un mensaje claro en vez de cortar el programa.
+    """
     rutas = obtener_rutas_datos()
-    if not os.path.exists(rutas['sucio']):
-        return "Error: No se encontró el dataset."
-        
-    df = pd.read_csv(rutas['sucio'])
-    
+
+    try:
+        df = pd.read_csv(rutas['sucio'])
+    except FileNotFoundError:
+        return f"Error: No se encontró el dataset de entrada en '{rutas['sucio']}'."
+    except (pd.errors.EmptyDataError, pd.errors.ParserError) as e:
+        return f"Error: El dataset de entrada está vacío o dañado ({e})."
+
     # Limpieza y Normalización
     df_limpio = limpiar_datos(df)
-    
+
     # Ingeniería de Variables
     df_final = crear_caracteristicas(df_limpio)
-    
+
     # Guardado
-    df_final.to_csv(rutas['limpio'], index=False)
-    
+    try:
+        df_final.to_csv(rutas['limpio'], index=False)
+    except OSError as e:
+        return f"Error: No se pudo guardar el dataset limpio en '{rutas['limpio']}' ({e})."
+
     return {
         'reporte_inicial': auditar_datos(df),
         'reporte_final': auditar_datos(df_limpio),

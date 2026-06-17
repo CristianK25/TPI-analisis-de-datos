@@ -78,15 +78,28 @@ El archivo `notebooks/TPI_Analisis_Datos.ipynb` es el eje central de la entrega.
 
 - **Hito 1**: Planteo de objetivos y 3 preguntas de investigación complejas sobre brecha digital y riesgo académico.
 - **Hito 2**: Ejecución y demostración del proceso de limpieza utilizando el motor de `src`.
+- **Hito 3**: Análisis visual con **4 gráficos profesionales en Matplotlib y Seaborn** (agotamiento, brecha digital, perfiles atípicos y mapa de correlaciones), cada uno con su análisis escrito de qué "dice" el gráfico.
+- **Hito 5**: Informe de gestión con diagnóstico y **dos propuestas de mejora** justificadas con los datos hallados.
+
+### Dashboard Interactivo (Hito 4)
+
+La interfaz en **Streamlit** (`app.py` + módulos en `src/`) permite filtrar los datos en tiempo real y ver KPIs y gráficos actualizándose solos. Ver `docs/HITO4_DASHBOARD.md` para el detalle. Para ejecutarla:
+
+```bash
+streamlit run app.py
+```
 
 ---
 
-## 🚀 Hoja de Ruta (Roadmap para Hitos 3 y 4)
+## 🚀 Estado de los Hitos
 
-Este proyecto ha sido entregado con los **Hitos 1 y 2 finalizados y pulidos**. Los siguientes pasos para el equipo son:
-
-1.  **Hito 3 (Análisis Visual)**: Utilizar `dataset_CLEAN.csv` para generar gráficos en el Notebook que respondan a las preguntas planteadas en el Hito 1.
-2.  **Hito 4 (Dashboard)**: Desarrollar la interfaz en Streamlit consumiendo el dataset limpio y las funciones de `src`.
+| Hito | Descripción | Estado |
+|---|---|---|
+| **Hito 1** | Adquisición y planteo de 3 preguntas | ✅ |
+| **Hito 2** | ETL, limpieza y feature engineering | ✅ |
+| **Hito 3** | 4 gráficos en Matplotlib/Seaborn + análisis escrito | ✅ |
+| **Hito 4** | Dashboard interactivo en Streamlit | ✅ |
+| **Hito 5** | Informe de gestión y 2 propuestas | ✅ |
 
 ---
 
